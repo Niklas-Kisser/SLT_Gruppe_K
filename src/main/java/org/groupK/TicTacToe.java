@@ -10,8 +10,8 @@ public class TicTacToe {
     private int roundCounter = 0;
 
     public TicTacToe() {
-        this.player1 = new Player('X');
-        this.player2 = new Player('O');
+        this.player1 = new Player('X', "Player 1");
+        this.player2 = new Player('O',"Player 2");
         this.currentPlayer = player1; // Spieler X beginnt
         this.board = new Board();
         this.roundCounter = 0;
