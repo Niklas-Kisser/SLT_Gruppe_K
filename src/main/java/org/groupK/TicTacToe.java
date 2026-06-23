@@ -130,6 +130,17 @@ public class TicTacToe {
         return false;
     }
 
+    public static boolean wantToPlayAgain(Scanner in){
+        while(true){
+            System.out.println("Do you want to play another one? y/n");
+            String answer = in.next();
+            if (TicTacToe.isValidYesOrNo(answer)) {
+                answer = answer.toLowerCase();
+                return answer.equals("y");
+            }
+        }
+    }
+
     public static boolean isValidYesOrNo(String input){
         String answer = input.toLowerCase();
         if(answer.equals("y") || answer.equals("n")){
