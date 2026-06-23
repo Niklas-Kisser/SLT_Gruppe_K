@@ -44,7 +44,7 @@ public class BoardTest {
         // Da das Überschreiben laut Logik verhindert werden soll, prüfen wir indirekt,
         // ob das Feld blockiert bleibt (die Platzierung schlägt fehl). Das genaue Verhalten
         // wird über die 'isCellEmpty'-Prüfung im Spiel gesteuert.
-        assertFalse(board.isCellEmpty(0, 0));
+        assertFalse('O' == board.getCharAtPosition(0, 0));
     }
 
     @Test
