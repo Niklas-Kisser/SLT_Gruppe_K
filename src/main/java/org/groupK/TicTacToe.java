@@ -28,10 +28,10 @@ public class TicTacToe {
             boolean validMove = false;
 
             while (!validMove) {
-                System.out.print("row (0-2): ");
-                row = in.nextInt();
-                System.out.print("column (0-2): ");
-                col = in.nextInt();
+                System.out.print("row (1-3): ");
+                row = in.nextInt() -1; //-1 damit der User Spalte 1-3 sieht und nicht 0-2
+                System.out.print("column (1-3): ");
+                col = in.nextInt() -1;//-1 damit der User Spalte 1-3 sieht und nicht 0-2
 
                 if (board.isCellEmpty(row, col)) {
                     validMove = true;
