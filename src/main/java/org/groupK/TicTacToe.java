@@ -17,8 +17,8 @@ public class TicTacToe {
         this.roundCounter = 0;
     }
 
-    public void start() {
-        Scanner in = new Scanner(System.in);
+    public void start(Scanner in) {
+
 
         // Für US-01 läuft die Schleife so lange, bis das Board voll ist
         while (!board.isFull()) {
@@ -63,7 +63,6 @@ public class TicTacToe {
 
         // Finale Ausgabe des Feldes
         board.print();
-        in.close();
     }
 
     private void switchCurrentPlayer() {
@@ -127,6 +126,14 @@ public class TicTacToe {
             System.out.println("Oh no a draw!");
             return true;
 
+        }
+        return false;
+    }
+
+    public static boolean isValidYesOrNo(String input){
+        String answer = input.toLowerCase();
+        if(answer.equals("y") || answer.equals("n")){
+            return true;
         }
         return false;
     }
