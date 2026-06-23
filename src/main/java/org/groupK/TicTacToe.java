@@ -91,8 +91,10 @@ public class TicTacToe {
 
         for(int i = 0; i < 3; i++){
             char firstToCheck = board.getCharAtPosition(i, 1);
-            if(firstToCheck == board.getCharAtPosition(i, 0) && firstToCheck == board.getCharAtPosition(i,2)){
-                return true;
+            if(!(firstToCheck == (' '))){
+                if(firstToCheck == board.getCharAtPosition(i, 0) && firstToCheck == board.getCharAtPosition(i,2)){
+                    return true;
+                }
             }
         }
         return false;
@@ -101,8 +103,10 @@ public class TicTacToe {
     private boolean checkColumnForWinner(){
         for(int i = 0; i < 3; i++){
             char firstToCheck = board.getCharAtPosition(1, i);
-            if(firstToCheck == board.getCharAtPosition(0, i) && firstToCheck == board.getCharAtPosition(2,i)){
-                return true;
+            if(!(firstToCheck == (' '))){
+                if(firstToCheck == board.getCharAtPosition(0, i) && firstToCheck == board.getCharAtPosition(2,i)){
+                    return true;
+                }
             }
         }
         return false;
@@ -110,13 +114,15 @@ public class TicTacToe {
 
     private boolean checkDiagonalForWinner(){
         char first = board.getCharAtPosition(1,1);
-        // (0,0) == links oben (2,2) == rechts unten
-        if(first == board.getCharAtPosition(0,0) && first == board.getCharAtPosition(2,2)){
+        if(!(first == (' '))){
+            // (0,0) == links oben (2,2) == rechts unten
+            if(first == board.getCharAtPosition(0,0) && first == board.getCharAtPosition(2,2)){
             return true;
         }
-        // (2,0) == links unten (2,2) == rechts oben
-        if(first == board.getCharAtPosition(2,0) && first == board.getCharAtPosition(0,2)){
-            return true;
+            // (2,0) == links unten (2,2) == rechts oben
+            if(first == board.getCharAtPosition(2,0) && first == board.getCharAtPosition(0,2)){
+                return true;
+        }
         }
         return false;
     }
