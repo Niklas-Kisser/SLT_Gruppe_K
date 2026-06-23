@@ -45,10 +45,20 @@ public class TicTacToe {
             // Symbol auf dem Board platzieren
             board.place(row, col, currentPlayer.getMarker());
 
+
+
+            roundCounter++;
+            if(hasWinner()){
+                break;
+            }
+
+            if(isDraw()){
+                break;
+            }
+
             // Für die nächste Iteration den Spieler wechseln
             switchCurrentPlayer();
-            roundCounter++;
-            hasWinner();
+
         }
 
         // Finale Ausgabe des Feldes
@@ -70,7 +80,7 @@ public class TicTacToe {
         }
 
         if(checkColumnForWinner() || checkRowForWinner() || checkDiagonalForWinner()){
-            System.out.println("Winner Winner Chicken Dinner");
+            System.out.println("Winner Winner Chicken Dinner! Congrats " + currentPlayer);
             return true;
         }
 
@@ -108,6 +118,15 @@ public class TicTacToe {
         // (2,0) == links unten (2,2) == rechts oben
         if(first == board.getCharAtPosition(2,0) && first == board.getCharAtPosition(0,2)){
             return true;
+        }
+        return false;
+    }
+
+    private boolean isDraw(){
+        if(this.roundCounter == 9){
+            System.out.println("Oh no a draw!");
+            return true;
+
         }
         return false;
     }
