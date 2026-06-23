@@ -43,6 +43,12 @@ public class Board {
         }
     }
 
+    public char getCharAtPosition(int x, int y){
+        return this.cells[x][y];
+
+    }
+
+
     public void print() {
         System.out.println("_____");
         for (int i = 0; i < 3; i++) {
