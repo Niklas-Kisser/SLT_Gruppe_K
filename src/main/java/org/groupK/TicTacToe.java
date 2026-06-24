@@ -17,8 +17,8 @@ public class TicTacToe {
         this.roundCounter = 0;
     }
 
-    public void start() {
-        Scanner in = new Scanner(System.in);
+    public void start(Scanner in) {
+
 
         // Für US-01 läuft die Schleife so lange, bis das Board voll ist
         while (!board.isFull()) {
@@ -63,7 +63,6 @@ public class TicTacToe {
 
         // Finale Ausgabe des Feldes
         board.print();
-        in.close();
     }
 
     private void switchCurrentPlayer() {
@@ -92,8 +91,10 @@ public class TicTacToe {
 
         for(int i = 0; i < 3; i++){
             char firstToCheck = board.getCharAtPosition(i, 1);
-            if(firstToCheck == board.getCharAtPosition(i, 0) && firstToCheck == board.getCharAtPosition(i,2)){
-                return true;
+            if(!(firstToCheck == (' '))){
+                if(firstToCheck == board.getCharAtPosition(i, 0) && firstToCheck == board.getCharAtPosition(i,2)){
+                    return true;
+                }
             }
         }
         return false;
@@ -102,8 +103,10 @@ public class TicTacToe {
     private boolean checkColumnForWinner(){
         for(int i = 0; i < 3; i++){
             char firstToCheck = board.getCharAtPosition(1, i);
-            if(firstToCheck == board.getCharAtPosition(0, i) && firstToCheck == board.getCharAtPosition(2,i)){
-                return true;
+            if(!(firstToCheck == (' '))){
+                if(firstToCheck == board.getCharAtPosition(0, i) && firstToCheck == board.getCharAtPosition(2,i)){
+                    return true;
+                }
             }
         }
         return false;
@@ -111,13 +114,15 @@ public class TicTacToe {
 
     private boolean checkDiagonalForWinner(){
         char first = board.getCharAtPosition(1,1);
-        // (0,0) == links oben (2,2) == rechts unten
-        if(first == board.getCharAtPosition(0,0) && first == board.getCharAtPosition(2,2)){
+        if(!(first == (' '))){
+            // (0,0) == links oben (2,2) == rechts unten
+            if(first == board.getCharAtPosition(0,0) && first == board.getCharAtPosition(2,2)){
             return true;
         }
-        // (2,0) == links unten (2,2) == rechts oben
-        if(first == board.getCharAtPosition(2,0) && first == board.getCharAtPosition(0,2)){
-            return true;
+            // (2,0) == links unten (2,2) == rechts oben
+            if(first == board.getCharAtPosition(2,0) && first == board.getCharAtPosition(0,2)){
+                return true;
+        }
         }
         return false;
     }
@@ -127,6 +132,25 @@ public class TicTacToe {
             System.out.println("Oh no a draw!");
             return true;
 
+        }
+        return false;
+    }
+
+    public static boolean wantToPlayAgain(Scanner in){
+        while(true){
+            System.out.println("Do you want to play another one? y/n");
+            String answer = in.next();
+            if (TicTacToe.isValidYesOrNo(answer)) {
+                answer = answer.toLowerCase();
+                return answer.equals("y");
+            }
+        }
+    }
+
+    public static boolean isValidYesOrNo(String input){
+        String answer = input.toLowerCase();
+        if(answer.equals("y") || answer.equals("n")){
+            return true;
         }
         return false;
     }
