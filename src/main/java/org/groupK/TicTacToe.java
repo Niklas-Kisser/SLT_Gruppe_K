@@ -155,4 +155,7 @@ public class TicTacToe {
         return false;
     }
 
+    public Board getBoard() {
+        return board;
+    }
 }
