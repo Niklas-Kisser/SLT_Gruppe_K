@@ -100,7 +100,7 @@ public class TicTacToe {
         return false;
     }
 
-    private boolean checkColumnForWinner(){
+    public boolean checkColumnForWinner(){
         for(int i = 0; i < 3; i++){
             char firstToCheck = board.getCharAtPosition(1, i);
             if(!(firstToCheck == (' '))){
@@ -112,7 +112,7 @@ public class TicTacToe {
         return false;
     }
 
-    private boolean checkDiagonalForWinner(){
+    public boolean checkDiagonalForWinner(){
         char first = board.getCharAtPosition(1,1);
         if(!(first == (' '))){
             // (0,0) == links oben (2,2) == rechts unten
