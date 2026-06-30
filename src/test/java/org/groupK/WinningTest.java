@@ -59,6 +59,17 @@ public class WinningTest {
         assertFalse(game.checkDiagonalForWinner());
     }
 
+    @Test
+    public void wonByDiagonal(){
+        TicTacToe game = new TicTacToe();
+
+        game.getBoard().place(0, 0, 'X');
+        game.getBoard().place(1, 1, 'X');
+        game.getBoard().place(2, 2, 'X');
+
+        assertTrue(game.checkDiagonalForWinner());
+    }
+
 
 
 
