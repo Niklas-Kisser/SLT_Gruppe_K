@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class WinningTest {
 
+
     @Test
     public void notPlayedNoWinner(){
         TicTacToe game = new TicTacToe();
@@ -31,5 +32,34 @@ public class WinningTest {
 
     }
 
+    @Test
+    public void wonByColumn(){
+        TicTacToe game = new TicTacToe();
+
+        game.getBoard().place(0,0,'X');
+        game.getBoard().place(1, 0,'X');
+        game.getBoard().place(2,0, 'X');
+
+        game.getBoard().print();
+
+        assertTrue(game.checkColumnForWinner());
+    }
+
+
+    @Test
+    public void notWonByDiagonal(){
+        TicTacToe game = new TicTacToe();
+
+        game.getBoard().place(0,0,'X');
+        game.getBoard().place(1, 0,'X');
+        game.getBoard().place(2,0, 'X');
+
+        game.getBoard().print();
+
+        assertFalse(game.checkDiagonalForWinner());
+    }
+
+
+    
 
 }
