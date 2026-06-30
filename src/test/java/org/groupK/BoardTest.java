@@ -2,6 +2,10 @@ package org.groupK;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardTest {
@@ -66,5 +70,82 @@ public class BoardTest {
         }
 
         assertTrue(board.isFull(), "Board should be full after filling all cells.");
+    }
+
+    @Test
+    public void testPrintBoardOfNewBoardDoesNotContainPlayerSymbols() {
+        Board board = new Board();
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+
+        System.setOut(new PrintStream(outputStream));
+
+        board.print();
+
+        System.setOut(originalOut);
+
+        String output = outputStream.toString();
+
+        assertFalse(output.contains("X"));
+        assertFalse(output.contains("O"));
+    }
+
+    @Test
+    public void testPrintBoardWithMultipleSymbols() {
+        Board board = new Board();
+
+        board.place(0, 0, 'X');
+        board.place(1, 1, 'O');
+        board.place(2, 2, 'X');
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+
+        System.setOut(new PrintStream(outputStream));
+
+        board.print();
+
+        System.setOut(originalOut);
+
+        String output = outputStream.toString();
+
+        assertTrue(output.contains("|X| | |"));
+        assertTrue(output.contains("| |O| |"));
+        assertTrue(output.contains("| | |X|"));
+    }
+
+    @Test
+    public void testClearMakesOccupiedCellEmptyAgain() {
+        board.place(0, 0, 'X');
+
+        board.clear();
+
+        assertTrue(board.isCellEmpty(0, 0));
+    }
+
+    @Test
+    public void testClearRemovesMultipleMarkers() {
+        board.place(0, 0, 'X');
+        board.place(1, 1, 'O');
+        board.place(2, 2, 'X');
+
+        board.clear();
+
+        assertTrue(board.isCellEmpty(0, 0));
+        assertTrue(board.isCellEmpty(1, 1));
+        assertTrue(board.isCellEmpty(2, 2));
+    }
+
+    @Test
+    public void testGetCharAtPositionReturnsPlacedMarker() {
+        board.place(1, 2, 'X');
+
+        assertEquals('X', board.getCharAtPosition(1, 2));
+    }
+
+    @Test
+    public void testGetCharAtPositionReturnsBlankForEmptyCell() {
+        assertEquals(' ', board.getCharAtPosition(2, 1));
     }
 }
